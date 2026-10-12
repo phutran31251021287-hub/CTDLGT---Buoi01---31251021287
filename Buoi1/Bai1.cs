@@ -14,10 +14,11 @@ namespace Buoi1
             double b = Convert.ToDouble(Console.ReadLine());
             Console.Write("Nhap c: ");
             double c = Convert.ToDouble(Console.ReadLine());
+            double sum = a + b + c;
             double max = (a > b) ? ((a > c) ? a : c) : ((b > c) ? b : c);
             double min = (a < b) ? ((a < c) ? a : c) : ((b < c) ? b : c);
             double avg = (a + b + c) / 3;
-            Console.Write($"Lon nhat = {max}, nho nhat = {min}, trung binh = {avg:f2}");
+            Console.Write($"Lon nhat = {max}, nho nhat = {min}, tong {sum}, trung binh = {avg:f2}");
         }
     }
 }

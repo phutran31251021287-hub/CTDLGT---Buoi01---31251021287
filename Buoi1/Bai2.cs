@@ -6,7 +6,7 @@ namespace Buoi1
 {
     internal class Bai2
     {
-        static void Main1(string[] args)
+        static void Main(string[] args)
         {
             Console.Write("Nhap n: ");
             int n = Convert.ToInt32(Console.ReadLine());
@@ -17,7 +17,7 @@ namespace Buoi1
             string[] rawNumbers = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             int max1 = int.Parse(rawNumbers[0]);
-            int max2 = int.Parse(rawNumbers[0]);
+            int? max2 = null;
 
             for (int i = 0; i < n; i++)
             {
@@ -28,13 +28,13 @@ namespace Buoi1
                     max2 = max1;
                     max1 = x;
                 }
-                else if (x < max1 && x > max2)
+                else if (x < max1 && (!max2.HasValue || x > max2.Value))
                 {
                     max2 = x;
                 }
             }
 
-            if (max2 != int.Parse(rawNumbers[0]))
+            if (max2.HasValue)
             {
                 Console.WriteLine($"{max1} {max2}");
             }

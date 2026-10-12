@@ -1,94 +1,84 @@
+# BÀI TẬP THỰC HÀNH 01 - LẬP TRÌNH C# VÀ PHÂN TÍCH THUẬT TOÁN
+
 ## 1. Thông tin sinh viên
-Họ và tên: Trần Thiên Phú
-Mã số sinh viên (MSSV): 31251021287
-Lớp học phần: 26C1INF50900706
+- **Họ và tên:** Trần Thiên Phú
+- **Mã số sinh viên (MSSV):** 31251021287
+- **Lớp học phần:** 26C1INF50900706
+- **Môn học:** Cấu trúc dữ liệu và Giải thuật
+
+---
 
 ## 2. Hướng dẫn biên dịch và chạy chương trình
-Ngôn ngữ sử dụng: C#
-Cách chạy: Dowdload các file Bai1.cs, Bai2.cs, Bai3.cs về và mở trên các ứng dụng hỗ trợ ngôn ngữ C# để chạy.
+- **Ngôn ngữ:** C# (.NET 6.0 trở lên)
+- **Môi trường phát triển:** JetBrains Rider / Visual Studio / VS Code
+- **Cách chạy:**
+  1. Tải repository hoặc clone về máy.
+  2. Mở dự án trong JetBrains Rider.
+  3. Chọn file cần chạy (`Bai1.cs`, `Bai2.cs`, hoặc `Bai3.cs`), giữ hàm `static void Main` ở file đó và đổi tên hàm `Main` ở 2 file còn lại thành `Main1`/`Main2`/`Main3` để tránh xung đột điểm chạy.
+  4. Mở **Terminal** trong Rider (`Alt + F12`) và gõ lệnh:
+     ```bash
+     dotnet run
+     ```
+
+---
 
 ## 3. Mô tả ngắn giải pháp của từng bài
-Bài 1: Sử dụng toán tử 3 ngôi để tìm min, max và công thức trung bình cộng để tính trung bình
-Bài 2: Cho nhập n (số nguyên) và chuỗi ký tự trong mảng (string) sau đó mới split ra ép về int và đem đi so sánh. Cho số lớn nhất là max_1 = phần tử đầu tiên trong mảng. max_2 số lớn nhì = phần tử đầu tiên trong mảng. Sau đó dùng for để chạy từng phần tử đem đi so sánh nếu giá trị tại vị trí i lớn nhất thì gán vào max_1, chuyển giá trị max_1 sang max_2.
-Xử lý thêm trường hợp giá trị nhỏ hơn max_1 nhưng lại lớn hơn max_2 thì gán vào max_2
-Bài 3: Phiên bản A xử dụng cộng liên tiếp và so sánh với biến max định sẵn không nếu có thì thay giá trị max, mỗi lần cộng thêm giá trị và mỗi lần so sánh. Phiên bản B là thuật toán Kadane.
+
+### Bài 1: Nhập xuất và xử lý điều kiện
+- **Giải pháp:** Nhập 3 số $a, b, c$. Sử dụng toán tử ba ngôi `? :` để xác định số lớn nhất (`max`) và số nhỏ nhất (`min`). Tính `tổng = a + b + c` và `trung bình = tổng / 3.0` (định dạng hiển thị `:F2`).
+
+### Bài 2: Hai giá trị lớn nhất phân biệt
+- **Giải pháp:** Duyệt mảng đúng một lần ($\Theta(n)$). Sử dụng biến `max1` giữ giá trị lớn nhất và `max2` (kiểu `int?`) giữ giá trị lớn thứ hai phân biệt.
+  - Nếu gặp $x > max1$, cập nhật $max2 = max1$ và $max1 = x$.
+  - Nếu gặp $max1 > x > max2$, cập nhật $max2 = x$.
+  - Xuất `NO` nếu không tồn tại `max2`.
+
+### Bài 3: Đoạn con liên tiếp có tổng lớn nhất
+- **Phiên bản A ($\Theta(n^2)$):** Sử dụng 2 vòng lặp lồng nhau để tính tổng tích lũy từ chỉ số $i$ đến $j$ và cập nhật tổng lớn nhất.
+- **Phiên bản B ($\Theta(n)$ - Kadane):** Duyệt mảng 1 lần, duy trì `maxEndingHere = Math.Max(x, maxEndingHere + x)` và `maxSoFar`. Xử lý đúng trường hợp mảng toàn số âm (trả về phần tử lớn nhất).
+
+---
 
 ## 4. Độ phức tạp thời gian và bộ nhớ
 
-Bài 1 (Nhập xuất và xử lý điều kiện):
-- Thời gian: O(1) hoặc Θ(1) vì thuật toán chỉ so sánh điều kiện trực tiếp và tính toán trên 3 số cố định, thời gian chạy không phụ thuộc vào dữ liệu nhập vào.
-- Bộ nhớ: O(1) hoặc Θ(1) do chỉ sử dụng một vài biến đơn để lưu giá trị (a, b, c, max, min, avg).
-
-Bài 2 (Hai giá trị lớn nhất phân biệt):
-- Thời gian: Θ(n) vì thuật toán đáp ứng đúng ràng buộc chỉ duyệt qua mảng số nguyên gồm n phần tử đúng một lần duy nhất bằng vòng lặp.
-- Bộ nhớ: Θ(1) bộ nhớ phụ vì chương trình chỉ sử dụng một số biến chạy và biến lưu trữ giá trị lớn nhất (max1, max2), không tạo thêm mảng phụ hay cấu trúc dữ liệu trung gian nào khác (đạt mục tiêu đề bài).
-
-Bài 3 (Đoạn con liên tiếp có tổng lớn nhất):
-- Phiên bản A (Thuật toán duyệt tích lũy):
-  + Thời gian: Θ(n²) do sử dụng 2 vòng lặp lồng nhau để xét các vị trí bắt đầu, kết thúc và tích lũy tổng của mọi đoạn con, không dùng 3 vòng lặp Θ(n³).
-  + Bộ nhớ: O(1) bộ nhớ phụ (ngoại trừ không gian lưu mảng chuỗi đầu vào rawNumbers).
-- Phiên bản B (Thuật toán Kadane):
-  + Thời gian: Θ(n) vì chỉ sử dụng duy nhất một vòng lặp từ đầu đến cuối mảng để tính tổng lớn nhất tại mỗi vị trí dựa trên kết quả của bước trước đó.
-  + Bộ nhớ: Θ(1) bộ nhớ phụ, xử lý chính xác cả trường hợp tất cả phần tử trong mảng đều âm (trả về phần tử lớn nhất chứ không mặc định bằng 0).
+| Bài | Thời gian | Bộ nhớ phụ | Ghi chú |
+| :--- | :---: | :---: | :--- |
+| **Bài 1** | $\Theta(1)$ | $\Theta(1)$ | Chỉ tính toán trên 3 biến cố định |
+| **Bài 2** | $\Theta(n)$ | $\Theta(1)$ | Chỉ duyệt mảng 1 lần, xử lý trùng & số âm |
+| **Bài 3 (Phiên bản A)** | $\Theta(n^2)$ | $\Theta(1)$ | Thuật toán duyệt tích lũy 2 vòng lặp |
+| **Bài 3 (Phiên bản B)** | $\Theta(n)$ | $\Theta(1)$ | Thuật toán Kadane tối ưu |
 
 ---
 
 ## 5. Các test case đã sử dụng
 
-### Bài 1 (Thử nghiệm đầy đủ 4 trường hợp biên theo yêu cầu)
-- Test case 1 (Ba số khác nhau):
-  + Input: 7 2 10
-  + Expected Output: Lớn nhất: 10; nhỏ nhất: 2; tổng: 19; trung bình: 6.33
-  + Actual Output: Lon nhat = 10, nho nhat = 2, trung binh = 6.33
-- Test case 2 (Có số âm):
-  + Input: -5 -2 -9
-  + Expected Output: Lớn nhất: -2; nhỏ nhất: -9; tổng: -16; trung bình: -5.33
-  + Actual Output: Lon nhat = -2, nho nhat = -9, trung binh = -5.33
-- Test case 3 (Hai số bằng nhau):
-  + Input: 5 8 5
-  + Expected Output: Lớn nhất: 8; nhỏ nhất: 5; tổng: 18; trung bình: 6.00
-  + Actual Output: Lon nhat = 8, nho nhat = 5, trung binh = 6.00
-- Test case 4 (Ba số bằng nhau):
-  + Input: 4 4 4
-  + Expected Output: Lớn nhất: 4; nhỏ nhất: 4; tổng: 12; trung bình: 4.00
-  + Actual Output: Lon nhat = 4, nho nhat = 4, trung binh = 4.00
+### Bài 1
+- **Test case 1 (3 số khác nhau):**
+  - Input: `7 2 10`
+  - Output: `Lon nhat: 10; nho nhat: 2; tong: 19; trung binh: 6.33`
+- **Test case 2 (Có số âm):**
+  - Input: `-5 -2 -9`
+  - Output: `Lon nhat: -2; nho nhat: -9; tong: -16; trung binh: -5.33`
+- **Test case 3 (2 số bằng nhau):**
+  - Input: `5 8 5`
+  - Output: `Lon nhat: 8; nho nhat: 5; tong: 18; trung binh: 6.00`
+- **Test case 4 (3 số bằng nhau):**
+  - Input: `4 4 4`
+  - Output: `Lon nhat: 4; nho nhat: 4; tong: 12; trung binh: 4.00`
 
-### Bài 2 (Bộ kiểm thử tối thiểu chuẩn theo đề bài)
-- Test case 1 (Trường hợp thông thường):
-  + Input: n = 5, mang = 3 7 2 9 5
-  + Expected Output: 9 7
-  + Actual Output: 9 7
-- Test case 2 (Có phần tử trùng):
-  + Input: n = 4, mang = 8 8 8 3
-  + Expected Output: 8 3
-  + Actual Output: 8 3
-- Test case 3 (Toàn số âm):
-  + Input: n = 3, mang = -9 -2 -5
-  + Expected Output: -2 -5
-  + Actual Output: -2 -5
-- Test case 4 (Không có số thứ hai):
-  + Input: n = 4, mang = 4 4 4 4
-  + Expected Output: NO
-  + Actual Output: NO
-- Test case 5 (Kích thước nhỏ nhất n = 2):
-  + Input: n = 2, mang = 1 2
-  + Expected Output: 2 1
-  + Actual Output: 2 1
+### Bài 2
+- **Test case 1 (Thông thường):** Input `n = 5`, mảng `3 7 2 9 5` $\rightarrow$ Output: `9 7`
+- **Test case 2 (Có phần tử trùng):** Input `n = 4`, mảng `8 8 8 3` $\rightarrow$ Output: `8 3`
+- **Test case 3 (Toàn số âm):** Input `n = 3`, mảng `-9 -2 -5` $\rightarrow$ Output: `-2 -5`
+- **Test case 4 (Không có số thứ hai):** Input `n = 4`, mảng `4 4 4 4` $\rightarrow$ Output: `NO`
+- **Test case 5 (Kích thước nhỏ nhất):** Input `n = 2`, mảng `1 2` $\rightarrow$ Output: `2 1`
 
 ### Bài 3
-- Test case 1 (Mảng hỗn hợp âm dương):
-  + Input: -2 1 -3 4 -1 2 1 -5 4
-  + Expected Output: Phiên bản A: 6, Phiên bản B: 6 (Đoạn con gợi ý: 4 -1 2 1)
-  + Actual Output: Phiên bản A: 6, Phiên bản B: 6
-- Test case 2 (Mảng toàn số âm - Kiểm tra điều kiện biên Kadane):
-  + Input: -8 -3 -6 -2 -5 -4
-  + Expected Output: Phiên bản A: -2, Phiên bản B: -2 (Đoạn con gợi ý: -2)
-  + Actual Output: Phiên bản A: -2, Phiên bản B: -2
-- Test case 3 (Mảng toàn số dương):
-  + Input: 1 2 3
-  + Expected Output: Phiên bản A: 6, Phiên bản B: 6 (Đoạn con gợi ý: 1 2 3)
-  + Actual Output: Phiên bản A: 6, Phiên bản B: 6
+- **Test case 1 (Mảng hỗn hợp):** Input `-2 1 -3 4 -1 2 1 -5 4` $\rightarrow$ Kết quả A: `6` | B: `6`
+- **Test case 2 (Mảng toàn số âm):** Input `-8 -3 -6 -2 -5 -4` $\rightarrow$ Kết quả A: `-2` | B: `-2`
+- **Test case 3 (Mảng toàn số dương):** Input `1 2 3` $\rightarrow$ Kết quả A: `6` | B: `6`
+
+---
 
 ## 6. Công cụ AI đã sử dụng
-Mẫu khai báo tuân thủ theo đúng quy định sử dụng AI của học phần:
-- Em đã sử dụng ChatGPT để viết README và kiểm thử những test case được giao
+Em đã sử dụng công cụ AI (Gemini và Claude) để hỗ trợ kiểm tra lỗi logic xử lý mảng, tối ưu việc đo thời gian chạy của bài 3 và định dạng tài liệu báo cáo. Toàn bộ mã nguồn đã được tôi kiểm thử trực tiếp trên JetBrains Rider và chịu trách nhiệm hoàn toàn về kết quả.

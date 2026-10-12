@@ -7,7 +7,7 @@ namespace Buoi1
 {
     internal class Bai3
     {
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             Console.Write("Nhap n: ");
             int n = Convert.ToInt32(Console.ReadLine());
@@ -15,7 +15,13 @@ namespace Buoi1
             Console.Write("Nhap mang: ");
             string input = Console.ReadLine();
 
-            string[] rawNumbers = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] arr = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            
+            int[] rawNumbers = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                rawNumbers[i] = int.Parse(arr[i]);
+            }
 
             var stopwatchA = System.Diagnostics.Stopwatch.StartNew();
             var resultA = PhienBanA(rawNumbers, n);
@@ -30,29 +36,29 @@ namespace Buoi1
             Console.WriteLine($"Phien ban B: {resultB}");
             Console.WriteLine($"thoi gian: {stopwatchB.Elapsed.TotalMilliseconds}");
         }
-        static int PhienBanA(string[] arr, int n)
+        static int PhienBanA(int[] arr, int n)
         {
             if (arr == null || arr.Length == 0) return 0;
-            int maxSum = int.Parse(arr[0]);
+            int maxSum = arr[0];
             for (int i = 0; i < n; i++)
             {
                 int currentSum = 0;
                 for (int j = i; j < n; j++)
                 {
-                    currentSum += int.Parse(arr[j]);
+                    currentSum += arr[j];
                     if (currentSum > maxSum) maxSum = currentSum;
                 }
             }
             return maxSum;
         }
-        static int PhienBanB(string[] arr, int size)
+        static int PhienBanB(int[] arr, int size)
         {
-            int maxEndingHere = int.Parse(arr[0]);
-            int maxSoFar = int.Parse(arr[0]);
+            int maxEndingHere = arr[0];
+            int maxSoFar = arr[0];
 
             for (int i = 1; i < size; i++)
             {
-                maxEndingHere = Math.Max(int.Parse(arr[i]), maxEndingHere + int.Parse(arr[i]));
+                maxEndingHere = Math.Max(arr[i], maxEndingHere + arr[i]);
                 maxSoFar = Math.Max(maxSoFar, maxEndingHere);
             }
 
