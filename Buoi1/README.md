@@ -81,4 +81,4 @@
 ---
 
 ## 6. Công cụ AI đã sử dụng
-Em đã sử dụng công cụ AI (Gemini và Claude) để hỗ trợ kiểm tra lỗi logic xử lý mảng, tối ưu việc đo thời gian chạy của bài 3 và định dạng tài liệu báo cáo. Toàn bộ mã nguồn đã được tôi kiểm thử trực tiếp trên JetBrains Rider và chịu trách nhiệm hoàn toàn về kết quả.
+Em đã sử dụng công cụ AI (Gemini và Claude) để hỗ trợ kiểm tra lỗi logic xử lý mảng, tối ưu việc đo thời gian chạy của bài 3 và định dạng tài liệu báo cáo. Toàn bộ mã nguồn đã được em kiểm thử trực tiếp trên JetBrains Rider và chịu trách nhiệm hoàn toàn về kết quả.
