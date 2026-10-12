@@ -91,4 +91,4 @@ Bài 3 (Đoạn con liên tiếp có tổng lớn nhất):
 
 ## 6. Công cụ AI đã sử dụng
 Mẫu khai báo tuân thủ theo đúng quy định sử dụng AI của học phần:
-- Tôi đã sử dụng ChatGPT / Claude để giải thích thuật toán, phân tích độ phức tạp thời gian và chuẩn hóa định dạng văn bản Markdown cho tài liệu báo cáo này. Phần được hỗ trợ gồm: Phân tích lý thuyết Big-O và xây dựng cấu trúc file README.
+- Em đã sử dụng ChatGPT để viết README và kiểm thử những test case được giao
